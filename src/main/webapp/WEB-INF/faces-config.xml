@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+
+    <application>
+     	   <locale-config>  
+                <supported-locale>en</supported-locale>
+                <supported-locale>es</supported-locale>
+     	   </locale-config>   
+     </application>
+     <managed-bean>
+         <managed-bean-name>fecha</managed-bean-name>
+         <managed-bean-class>java.util.Date</managed-bean-class>
+         <managed-bean-scope>request</managed-bean-scope>
+     </managed-bean>  
+     
+     <navigation-rule>
+         <from-view-id>/*</from-view-id>
+         <navigation-case>
+             <from-outcome>inicio</from-outcome>
+             <to-view-id>mensaje.xhtml</to-view-id>
+             <redirect/>
+         </navigation-case>
+          <navigation-case>
+             <from-outcome>usuarios</from-outcome>
+             <to-view-id>VistaUsuarios.xhtml</to-view-id>
+             <redirect/>
+         </navigation-case>
+         <navigation-case>
+             <from-outcome>consulta</from-outcome>
+             <to-view-id>consulta.xhtml</to-view-id>
+             <redirect/>
+         </navigation-case>
+         <navigation-case>
+             <from-outcome>recupera</from-outcome>
+             <to-view-id>recuperaContraseña.xhtml</to-view-id>
+             <redirect/>
+         </navigation-case>
+         <navigation-case> 
+             <from-outcome>saludo</from-outcome>
+             <to-view-id>inicio.xhtml</to-view-id>
+             <redirect/>
+         </navigation-case>
+         <navigation-case> 
+             <from-outcome>resultados</from-outcome>
+             <to-view-id>resultados.xhtml</to-view-id>
+             <redirect/>
+         </navigation-case>
+        <navigation-case> 
+             <from-outcome>comentarios</from-outcome>
+             <to-view-id>comentarios.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        <navigation-case> 
+             <from-outcome>analisis</from-outcome>
+             <to-view-id>analisis.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+         <navigation-case> 
+             <from-outcome>mensaje</from-outcome>
+             <to-view-id>inicioSesion.xhtml</to-view-id>
+             <redirect/>
+         </navigation-case>     
+     </navigation-rule>
+
+     
+</faces-config>

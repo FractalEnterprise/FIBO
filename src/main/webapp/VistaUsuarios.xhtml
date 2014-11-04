@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>JavaServerFaces 2.0</title>
+    </h:head>
+    
+    <h:body >
+        
+    <ui:composition template="./template/principal.xhtml">
+                
+      <ui:define name="content">
+            <p:growl autoUpdate="true" id="validacion" showSummary="true" showDetail="true"   />
+            
+            <span class="linkInicioSesion">
+                <h:form>
+                  
+                    <p:commandLink action="mensaje" value="inicio" />
+                  
+                </h:form>
+            </span>      
+            
+    <span class="title">
+              
+        <p> Dar de alta</p>
+               
+    </span>
+            
+            <h:form id="formUsuario">
+                <center>
+                <h:panelGrid columns="3" >
+                    <h:outputLabel value="Nombre de Usuario:" />
+                    <p:inputText id="nombre" validatorMessage="Formato Incorrecto" value="#{usuariosController.usuario.nombreDeUsuario}" required="true">
+                        <f:validateRegex pattern="^[A-Z][a-z]{2,20}(\s[A-Z][a-z]{2,20}){0,3}$" />
+                    </p:inputText>
+                    <p:message for="nombre" />
+
+                    <h:outputLabel value="Correo"/>
+                    <p:inputText id="correo" value="#{usuariosController.usuario.correo}" required="true" validatorMessage="Formato Incorrecto">
+                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                    </p:inputText>
+                    <p:message for="correo" />
+
+                    <h:outputLabel value="Contraseña"/>
+                    <p:inputText id="contraseña" value="#{usuariosController.usuario.contraseña}" required="true" validatorMessage="Formato incorrecto, se requiere 7 a 30 caractéres, una Mayuscula, una Miniscula y un digito ">
+                         <f:validateRegex pattern="^(?!.*(.)\1{3})((?=.*[\d])(?=.*[a-z])(?=.*[A-Z])|(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\d\s])|(?=.*[\d])(?=.*[A-Z])(?=.*[^\w\d\s])|(?=.*[\d])(?=.*[a-z])(?=.*[^\w\d\s])).{7,30}$" />
+                    </p:inputText>
+                    <p:message for="contraseña" />
+
+                    <h:outputLabel value="Contraseña"/>
+                    <p:inputText id="contraseñaConfirma"  validatorMessage="Formato incorrecto, se requiere 7 a 30 caractéres, una Mayuscula, una Miniscula y un digito "  required="true">
+                        <f:validateRegex pattern="^(?!.*(.)\1{3})((?=.*[\d])(?=.*[a-z])(?=.*[A-Z])|(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\d\s])|(?=.*[\d])(?=.*[A-Z])(?=.*[^\w\d\s])|(?=.*[\d])(?=.*[a-z])(?=.*[^\w\d\s])).{7,30}$" />
+                    </p:inputText>
+                     <p:message for="contraseñaConfirma" />
+                     
+                    <p:outputLabel />
+                    <p:commandButton 
+                                    value="alta"
+                                    action="mensaje"
+                                    ajax="true" 
+                                    update="@form :lista" 
+                                    actionListener="#{usuariosController.guardaUsuario()}" /> 
+                </h:panelGrid>
+                </center>
+            </h:form>
+        
+            <h:form id="lista">            
+            </h:form>
+            <br/>
+            <br/>
+            <h:form id="detalles">
+                <p:dialog widgetVar="detalleUsuario" modal="true" >
+                   <p:panelGrid columns="2" rendered="#{usuariosController.usuarioSeleccionado ne null}" >
+                        <p:outputLabel value="Nombre"/>
+                        <p:outputLabel value="#{usuariosController.usuarioSeleccionado.nombreDeUsuario}" />
+
+                         <p:outputLabel value="Correo"/>
+                         <p:outputLabel value="#{usuariosController.usuarioSeleccionado.correo}" />
+
+                         <p:outputLabel value="Contraseña"/>
+                         <p:outputLabel value="#{usuariosController.usuarioSeleccionado.contraseña}" />
+
+                    </p:panelGrid>
+                </p:dialog>
+            </h:form>
+
+    </ui:define>
+ </ui:composition>
+    
+    </h:body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+        <title>JavaServerFaces 2.0</title>
+    </h:head>
+    <h:body>
+        
+          <ui:composition template="./template/principal.xhtml">
+            <ui:define name="content">
+        
+    	<h3>Hola Mundo</h3>
+        <h:form>
+            <h:outputLabel value="Escribe un nombre de usuario" />
+            <h:inputText id="usuario" value="#{controller.usuario}"/>
+            
+            <h:commandButton value="Enviar"  >
+                <f:ajax  execute="usuario"  render="tabla tabla2" listener="#{controller.guardaElemento()}"/>
+            </h:commandButton>
+            
+            
+          
+            
+         <br/>
+         <br/>
+            <!-- Comentario, ejemplo con dataTable usando tag de HTML JavaServerFaces-->
+            <h:outputLabel value="ejemplo con dataTable usando tag de HTML JavaServerFaces"/>
+            <h:dataTable id="tabla" value="#{controller.lista}"  bgcolor="#AAAAAA" border="1"
+                         var="_cadena" >
+                <h:column>#{_cadena}</h:column>
+            </h:dataTable>
+            <br/>
+            <!-- Comentario, ejemplo con dataTable usando tag de PrimeFaces -->
+            <h:outputLabel value="ejemplo con dataTable usando tag de PrimeFaces"/>
+            <p:dataTable style="width: 500px" id="tabla2" value="#{controller.lista}" 
+                         var="_cadena" >
+                <p:column headerText="Nombres de usuario">#{_cadena}</p:column>
+            </p:dataTable>
+             <br/>
+        </h:form>
+        
+        
+        
+        
+           <br/>
+            Fecha con formato default:<h:outputLabel value="#{fecha}" />
+            
+            
+            <!-- El atributo locale="es" sirve para indicar que se presente en español la fecha-->
+            <br/>
+            Fecha con formato 1:<h:outputText value="#{fecha}">
+                <f:convertDateTime type="date" locale="es" pattern="dd/MMMM/yyy"/>
+            </h:outputText>
+            <br/>
+        
+            </ui:define>
+          </ui:composition>
+        
+    </h:body>
+</html>

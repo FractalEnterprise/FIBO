@@ -1,0 +1,51 @@
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+     background-image: url('/vista/faces/javax.faces.resource/FIBO.jpg?ln=img')
+    
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #00Aa95;
+    
+}
+
+
+span.welcome{
+    text-align: center;
+    font-size: 300%;  
+    color:#ffffff;
+}
+span.title{
+    text-align: center;
+    font-size: 400%;  
+}
+
+
+span.link{
+    text-align: left;
+    font-size: 100%;
+}
+
+span.linkInicioSesion{
+    text-align: left;
+    font-size: 100%;
+}
+
+span.linkInicioSistema{
+    text-align: left;
+    font-size: 100%;
+}
+
+.fondo{
+   
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+        <title>JavaServerFaces 2.0</title>
+    </h:head>
+    <h:body>
+        
+          <ui:composition template="./template/principal.xhtml">
+            <ui:define name="content">
+                <p:growl autoUpdate="true" id="validacion" showSummary="true" showDetail="true"   />
+        
+                <span class="welcome">
+              
+                    <p> Bienvenido a FIBO</p>
+               
+                </span>
+
+            
+            <h:form id="formUsuario">
+                <center>
+                <h:panelGrid columns="3" >
+                    <h:outputLabel value="Usuario:" />
+                    <p:inputText id="usuario"  >
+                    </p:inputText>
+                    <p:message for="usuario" />
+
+                    <h:outputLabel value="Contraseña"/>
+                    <p:password id="apellidoPaterno" >
+                    </p:password>
+                    <p:message for="apellidoPaterno" />
+
+                    <p:outputLabel />
+                    <h:form> <p:commandButton  action ="consulta"
+                 
+                                    value="Iniciar sesión" /> 
+                       </h:form>
+                </h:panelGrid>
+               </center>
+            </h:form>
+        
+
+ 
+            
+                <center>
+                <h:form>
+                    <ul>
+                        <li><p:commandLink action="recupera" value="Recuperar contraseña" /></li>
+                        <li><p:commandLink action="usuarios" value="Registrarse" /></li>
+                    </ul> 
+                </h:form>
+                </center>
+            </ui:define>
+          </ui:composition>
+        
+    </h:body>
+</html>

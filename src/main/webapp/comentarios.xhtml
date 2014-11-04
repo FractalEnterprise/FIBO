@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       
+       >     
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+ 
+        
+          <h:body>
+        
+          <ui:composition template="./template/principal.xhtml">
+            <ui:define name="content">
+                
+            <span class="linkInicioSistema">
+                <h:form>
+                  <h:panelGrid columns="1" >
+                    <p:commandLink action="consulta" value="inicio" />
+                    <p:commandLink action="mensaje" value="Salir" />
+                  </h:panelGrid>
+                </h:form>
+            </span>                 
+            
+    <span class="title">
+        <p> Profesor - Materia </p>
+    </span>
+              <h:form id="comentarios">
+                <center>
+                    <p:dataTable>
+                        <p:column headerText="Usuario"> Mensajes antiguos </p:column>
+                        <p:column headerText="Comentario"> Mensajes antiguos </p:column>
+                    </p:dataTable>
+                <h:panelGrid columns="3" >
+                    <p:outputLabel />
+                    <h:form> <p:commandButton  action ="analisis"
+                 
+                                    value="Analisis Sentimental" /> 
+                       </h:form>
+                </h:panelGrid>
+                <h:panelGrid columns="3" >
+                    <p:outputLabel value="Escribe tu comentario"/>
+                    <h:inputText id="comentario"  />
+                    <p:commandButton  action ="comentarios"
+                                    value="Publicar" /> 
+                </h:panelGrid>
+               </center>
+            </h:form>       
+                
+                
+            </ui:define>
+          </ui:composition>
+        
+    </h:body>
+</html>
