@@ -20,11 +20,7 @@
      
      <navigation-rule>
          <from-view-id>/*</from-view-id>
-         <navigation-case>
-             <from-outcome>inicio</from-outcome>
-             <to-view-id>mensaje.xhtml</to-view-id>
-             <redirect/>
-         </navigation-case>
+
           <navigation-case>
              <from-outcome>usuarios</from-outcome>
              <to-view-id>VistaUsuarios.xhtml</to-view-id>

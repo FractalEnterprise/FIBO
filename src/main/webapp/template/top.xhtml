@@ -9,10 +9,16 @@
     <span class="link">
                 <h:form>
                   
-                    <p:commandLink action="inicio" value="Sobre FIBO" />
-                  
+                    <p:commandLink oncomplete="PF('detalleFIBO').show()" value="Sobre FIBO" />
                 </h:form>
                 </span>
-   
+    <h:form id="nosotros">
+                <p:dialog widgetVar="detalleFIBO" modal="true" >
+                   <p:panelGrid columns="1"  >
+                        <p:outputLabel value="Somos una empresa unida y casi lo logramos"/>
+                    </p:panelGrid>
+                </p:dialog>
+            </h:form>
+    
     
 </ui:composition>
