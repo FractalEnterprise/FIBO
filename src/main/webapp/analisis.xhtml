@@ -9,6 +9,7 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
        xmlns:ui="http://java.sun.com/jsf/facelets"
        xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://java.sun.com/jsf/core"
        
        >     
     <head>
@@ -34,9 +35,10 @@ and open the template in the editor.
     <span class="title">
         <p> Analisis Sentimental </p>
     </span>
-      
-                
-                
+                <center>
+                    <p:pieChart value="#{beanDatos.model}" showDataLabels="true" title="Análisis" legendPosition="e" sliceMargin="5"
+                    diameter="150" fill="false"  style="width:400px;height:300px"/> 
+                </center>
             </ui:define>
           </ui:composition>
         
