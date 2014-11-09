@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 /**
  *
  * @author guillermorojas
@@ -26,11 +27,13 @@ import javax.validation.constraints.Size;
 @Table(name = "usuario")
 @NamedQueries(
         {
-        @NamedQuery(name=UsuarioDto.SELECT_ALL,query="SELECT a FROM UsuarioDto a")
+        @NamedQuery(name=UsuarioDto.SELECT_ALL,query="SELECT a FROM UsuarioDto a"),
+        @NamedQuery(name=UsuarioDto.FIND_BY_MAIL,query="SELECT a FROM UsuarioDto a WHERE a.correo=?1")
         }
 )
 public class UsuarioDto implements Serializable{
     public static final String SELECT_ALL="select all";
+    public static final String FIND_BY_MAIL="find by mail";
     @Id
     @NotNull
     @Size(min = 2,max = 60)
@@ -47,10 +50,7 @@ public class UsuarioDto implements Serializable{
     @Size(max = 20)
     private String rango;
     
- 
-     
-
-
+    
     public UsuarioDto() {
     }
 
@@ -93,79 +93,7 @@ public class UsuarioDto implements Serializable{
     }
     
     
-    /*
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
-    
-    @NotNull
-    @Size(min = 2,max = 50)
-    private String nombre;
-    
-    @NotNull
-    @Size(min = 2,max = 50)
-    private String apellidoPaterno;
-    
-    @NotNull
-    @Size(min = 2,max = 50)
-    private String apellidoMaterno;
-    
-    @NotNull
-    @Size(max = 9)
-    private String numeroCuenta;
 
-    public UsuarioDto() {
-    }
-
-    public UsuarioDto(String nombre, String apellidoPaterno, String apellidoMaterno, String numeroCuenta) {
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.numeroCuenta = numeroCuenta;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
-    public String getNumeroCuenta() {
-        return numeroCuenta;
-    }
-
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    */
-    
-    
     
     @Override
     public boolean equals(Object object){
@@ -178,7 +106,7 @@ public class UsuarioDto implements Serializable{
          if ((this.nombreDeUsuario == null && usuario.nombreDeUsuario != null) || (this.nombreDeUsuario != null && !this.nombreDeUsuario.equals(usuario.nombreDeUsuario))) {
             return false;
         }
-        if(true /*usuario.getNumeroCuenta()!=null && usuario.getNumeroCuenta().equals(this.numeroCuenta)*/ ){
+        if(usuario.getContraseña()!= null && this.contraseña.equals(usuario.getContraseña()) ){
             return true;
         }
         else{

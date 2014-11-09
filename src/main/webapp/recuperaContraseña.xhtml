@@ -9,7 +9,7 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
        xmlns:ui="http://java.sun.com/jsf/facelets"
        xmlns:p="http://primefaces.org/ui"
-       
+      xmlns:f="http://java.sun.com/jsf/core"  
        >     
     <head>
         <title>TODO supply a title</title>
@@ -36,14 +36,14 @@ and open the template in the editor.
                 <center>
                 <h:panelGrid columns="3" >
                     <h:outputLabel value="Correo:" />
-                    <p:inputText id="Correo"  />
+                    <p:inputText id="Correo" value="#{usuariosController.usuarioSeleccionado.correo}" required="true" />
                     <p:message for="Correo" />
                     
                     <p:outputLabel />
-                    <h:form> <p:commandButton  action ="mensaje"
-                 
-                                    value="Enviar" /> 
-                       </h:form>
+                    <h:form> <p:commandButton  action ="mensaje" ajax="true"
+                                               actionListener="#{usuariosController.mandaCorreo()}"
+                                               value="Enviar" />
+                    </h:form>
                 </h:panelGrid>
                </center>
             </h:form>       

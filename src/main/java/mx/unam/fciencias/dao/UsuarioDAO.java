@@ -23,4 +23,13 @@ public class UsuarioDAO extends AbstractDAO<UsuarioDto>{
         return em.createNamedQuery(UsuarioDto.SELECT_ALL).getResultList();
     }
     
+    public UsuarioDto findByMail(String correo){
+        List<UsuarioDto> usuario= em.createNamedQuery(UsuarioDto.FIND_BY_MAIL).setParameter(1,correo).getResultList();
+    if(usuario.size()==0){
+        return null;
+    }
+    else {
+        return usuario.get(0);
+    }
+   }
 }

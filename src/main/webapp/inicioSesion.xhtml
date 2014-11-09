@@ -27,27 +27,24 @@
                 <center>
                 <h:panelGrid columns="3" >
                     <h:outputLabel value="Usuario:" />
-                    <p:inputText id="usuario"  >
+                    <p:inputText id="usuario" value="#{usuariosController.usuarioSesion.nombreDeUsuario}" required="true" validatorMessage="Nombre incorrecto" >
                     </p:inputText>
                     <p:message for="usuario" />
 
                     <h:outputLabel value="Contraseña"/>
-                    <p:password id="apellidoPaterno" >
+                    <p:password id="contraseña" value="#{usuariosController.usuarioSesion.contraseña}" required="true" validatorMessage="Contraseña incorrecta" >
                     </p:password>
-                    <p:message for="apellidoPaterno" />
+                    <p:message for="contraseña" />
 
                     <p:outputLabel />
-                    <h:form> <p:commandButton  action ="consulta"
-                 
-                                    value="Iniciar sesión" /> 
+                    <h:form> <p:commandButton ajax="true" 
+                                    action="#{usuariosController.revisaInicio()}" 
+                                    value="Iniciar sesión"/> 
                        </h:form>
                 </h:panelGrid>
                </center>
             </h:form>
-        
-
- 
-            
+                
                 <center>
                 <h:form>
                     <ul>
