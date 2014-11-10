@@ -44,7 +44,7 @@
                 </h:panelGrid>
                </center>
             </h:form>
-                
+ 
                 <center>
                 <h:form>
                     <ul>
@@ -58,3 +58,63 @@
         
     </h:body>
 </html>
+
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       
+       >     
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        
+    
+ 
+
+    </head>
+           <h:body>
+        
+          <ui:composition template="./template/principal.xhtml">
+            <ui:define name="content">
+                
+            <span class="linkInicioSistema">
+                <h:form>
+                  <h:panelGrid columns="1" >
+                    <p:commandLink action="consulta" value="inicio" />
+                    <p:commandLink action="mensaje" value="Salir" />
+                  </h:panelGrid>
+                    </h:form>
+                </span> 
+            
+    <span class="title">
+        <p> Analisis Sentimental </p>
+           
+    </span>
+                
+                <h:form id="grafica">
+                    <center>
+                        <p:dataTable value="#{analisisSentimental.popularidad}" var="_analisis">
+                    <p:column headerText="Popularidad"> #{_analisis} </p:column>
+                        </p:dataTable>
+                         </center>
+                </h:form>
+                
+                
+                
+                
+           </ui:define>
+       </ui:composition>
+              
+               
+           
+              
+    </h:body>
+</html>
+
+-->

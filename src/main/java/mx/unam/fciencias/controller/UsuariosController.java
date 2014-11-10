@@ -8,6 +8,7 @@ package mx.unam.fciencias.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -23,7 +24,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import mx.unam.fciencias.dao.ComentarioDAO;
+import mx.unam.fciencias.dao.ComentarioProfesorDAO;
+import mx.unam.fciencias.dao.ProfesorDAO;
 import mx.unam.fciencias.dao.UsuarioDAO;
+import mx.unam.fciencias.model.dto.ComentarioDto;
+import mx.unam.fciencias.model.dto.ComentarioProfesorDto;
+import mx.unam.fciencias.model.dto.ProfesorDto;
 import mx.unam.fciencias.model.dto.UsuarioDto;
 import org.primefaces.context.RequestContext;
 
@@ -35,6 +42,18 @@ import org.primefaces.context.RequestContext;
 @ManagedBean
 @SessionScoped
 public class UsuariosController {
+    
+    public String nProfesor; //una variable que guardará un nombre de profesor
+    public String nMateria;//una variable que guardará un nombre de materia
+    private ProfesorDto profesor;
+    private ComentarioDto comentarioDto;
+    private ComentarioProfesorDAO cpDao;
+     public ComentarioDAO comentarioDAO;
+     private ProfesorDAO profesorDao;
+     
+    public List<ProfesorDto> listaProf;//una lista que guardará todos los nombres de profesores
+    public List<ComentarioProfesorDto> listaCom;//una lista que guardará todos los comentarios de la tabla comentarioProfesor 
+    public List<ComentarioDto> listaComentarios;//una lista que guardará todos los comentarios de la tabla comentarioMateria;
     
     private UsuarioDto usuario;
     
@@ -64,6 +83,18 @@ public class UsuariosController {
         usuarioSeleccionado = new UsuarioDto();
         usuarios=new ArrayList<UsuarioDto>();
         usuarios.addAll(usuarioDAO.selectAllUsuarios());
+        
+        profesorDao = new ProfesorDAO();
+        cpDao = new ComentarioProfesorDAO();
+        comentarioDAO = new ComentarioDAO();
+        
+        comentarioDto = new ComentarioDto();
+        profesor = new ProfesorDto();
+        
+        listaComentarios = new ArrayList<ComentarioDto>();
+        listaProf = new ArrayList<ProfesorDto>();
+        
+         listaProf.addAll(profesorDao.selectAllNames());//
     }
     
     public void guardaUsuario(){
@@ -207,5 +238,88 @@ public class UsuariosController {
     }
 
     
+    /**
+     * Devuelve un objeto del tipo ComentarioDto
+     * 
+     */
+    public ComentarioDto getComentario(){
+        return comentarioDto;
+    }
     
+     public List<ProfesorDto> generarListaProf(){
+       return listaProf = profesorDao.selectAllNames();
+       //System.out.println(listaProf.get(1));
+     }
+     
+     /**
+     *@return Regresa una lista con objetos del tipo ComentarioDto
+     */
+     public List<ComentarioDto> obtenerListaComentarios(){
+         //oficialmentre usar el siguiente:
+         //return this.listaComentarios;
+         
+         
+         //para hacer pruebas
+         this.listaComentarios.addAll(comentarioDAO.selectAllSubjects("Ingeniería de Software"));
+         return this.listaComentarios;
+     } 
+     
+    
+     
+     
+     
+     /**
+     * Agrega un nuevo comentario a la tabla comentarioMateria
+     */
+    public void agregarComentarioMateria(){
+        comentarioDAO.getEm().getTransaction().begin();
+        comentarioDAO.create(comentarioDto);
+        comentarioDAO.getEm().getTransaction().commit();
+        comentarioDto=new ComentarioDto();
+        
+        listaComentarios=new ArrayList<ComentarioDto>();
+        listaComentarios.addAll(comentarioDAO.selectAllComments());
+    
+     }
+ 
+    /**
+     * * Primero actualiza una variable global con el nombre de un profesor, despues
+     * Hace una consulta a la tabla comentarioProfesor, buscando el nombre que recibi&oacute; como par&aacute;metro
+     * @param n el nombre de un profesor
+     */
+    public void setNombreProfesor(String n){
+        this.nProfesor=n;
+        
+    }
+    
+    /**
+     
+    *@return nProfesor  una cadena que representa el  nombre de un profesor
+    */
+    public String getNombreProfesor(){
+        return this.nProfesor;
+        
+    }
+    
+    
+    
+    /**
+     * Hace una consulta a la tabla comentarioMateria, buscando el nombre que recibi&oacute; como par&aacute;metro 
+     * los resultados de esa busqueda se almacenan en una lista 'listaComentarios' del tipo List<ComentarioDto>
+     */
+    public void generaComentariosMateria(){
+        //oficialmente usar la sig:
+        //this.listaComentarios.addAll(comentarioDAO.selectAllSubjects(getNombreMateria()));
+        
+        //para realizar pruebas
+        this.listaComentarios.addAll(comentarioDAO.selectAllSubjects("Ingeniería de Software"));
+    }
+    
+     /**
+    *@return  una cadena que representa el  nombre de una materia
+    */
+    public String getNombreMateria(){
+        return nMateria;
+    }
+
 }
